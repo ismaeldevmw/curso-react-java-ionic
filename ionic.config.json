@@ -1,0 +1,7 @@
+{
+  "name": "todo-list-sveltekit",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
