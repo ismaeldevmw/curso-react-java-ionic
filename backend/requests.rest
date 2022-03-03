@@ -1,0 +1,37 @@
+###
+GET http://localhost:8080/api/customers
+
+###
+GET http://localhost:8080/api/customers/1
+
+###
+DELETE  http://localhost:8080/api/customers/1
+
+###
+POST http://localhost:8080/api/customers
+content-type: application/json
+
+{
+  "firstname": "Ismael",
+  "lastname": "Lopez",
+  "email": "me@email.com",
+  "phone": "5522334411",
+  "address": "Av. Insurgentes No. 100"
+}
+
+###
+GET http://localhost:8080/api/employees
+
+###
+POST http://localhost:8080/api/employees
+content-type: application/json
+
+{
+  "firstname": "Ismael",
+  "lastname": "Lopez",
+  "email": "me@email.com",
+  "phone": "5522334411",
+  "address": "Av. Insurgentes No. 100",
+  "salary": 2500
+}
+
