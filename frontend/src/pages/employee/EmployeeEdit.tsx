@@ -17,30 +17,33 @@ import {
 } from '@ionic/react';
 import { checkmark } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router';
+import { useHistory, useParams, useRouteMatch } from 'react-router';
 import Employee from './Employee';
 import { saveEmployee, searchEmployeeById } from './EmployeeApi';
 
 const EmployeeEdit: React.FC = () => {
-  const { name, id } = useParams<{ name: string, id: string }>();
+  const { name } = useParams<{ name: string }>();
   const [employee, setEmployee] = useState<Employee>({});
   const history = useHistory();
 
+  const routeMatch: any = useRouteMatch("/page/employee/:id");
+  let id = routeMatch?.params?.id;
+
   useEffect(() => {
     search();
-  }, []);
+  }, [history.location.pathname]);
 
-  const search = () => {
-    if(id !== 'new') {
-      let result = searchEmployeeById(id);
+  const search = async () => {
+    if(id === 'new') {
+      setEmployee({});
+    } else {
+      let result = await searchEmployeeById(id);
       setEmployee(result);
     }
-    // const result = searchEmployees();
-    // setClients(result);
   };
 
-  const save = () => {
-    saveEmployee(employee);
+  const save = async () => {
+    await saveEmployee(employee);
     history.push('/page/employees');
   }
 
@@ -71,13 +74,13 @@ const EmployeeEdit: React.FC = () => {
             <IonCol>
               <IonItem>
                 <IonLabel position="stacked">Name</IonLabel>
-                <IonInput onIonChange={e => employee.firstName = String(e.detail.value)} value={employee.firstName}> </IonInput>
+                <IonInput onIonChange={e => employee.firstname = String(e.detail.value)} value={employee.firstname}> </IonInput>
               </IonItem>
             </IonCol>
             <IonCol>
               <IonItem>
                 <IonLabel position="stacked">Last name</IonLabel>
-                <IonInput onIonChange={e => employee.lastName = String(e.detail.value)} value={employee.lastName}> </IonInput>
+                <IonInput onIonChange={e => employee.lastname = String(e.detail.value)} value={employee.lastname}> </IonInput>
               </IonItem>
             </IonCol>
             <IonCol>
@@ -99,6 +102,12 @@ const EmployeeEdit: React.FC = () => {
               <IonItem>
                 <IonLabel position="stacked">Address</IonLabel>
                 <IonInput onIonChange={e => employee.address = String(e.detail.value)} value={employee.address}> </IonInput>
+              </IonItem>
+            </IonCol>
+            <IonCol>
+              <IonItem>
+                <IonLabel position="stacked">Salary</IonLabel>
+                <IonInput onIonChange={e => employee.salary = Number(e.detail.value)} value={employee.salary}> </IonInput>
               </IonItem>
             </IonCol>
           </IonRow>

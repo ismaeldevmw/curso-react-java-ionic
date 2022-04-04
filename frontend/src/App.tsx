@@ -4,7 +4,7 @@ import {
   IonSplitPane,
   setupIonicReact,
 } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
+import { IonReactHashRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 
 /* Core CSS required for Ionic components to work properly */
@@ -29,8 +29,8 @@ import CustomerList from './pages/customer/CustomerList';
 import CustomerEdit from './pages/customer/CustomerEdit';
 import EmployeeList from './pages/employee/EmployeeList';
 import EmployeeEdit from './pages/employee/EmployeeEdit';
-import VendorList from './pages/vendor/VendorList';
-import VendorEdit from './pages/vendor/VendorEdit';
+import SupplierList from './pages/supplier/SupplierList';
+import SupplierEdit from './pages/supplier/SupplierEdit';
 import Menu from './components/Menu';
 
 setupIonicReact();
@@ -38,7 +38,7 @@ setupIonicReact();
 const App: React.FC = () => {
   return (
     <IonApp>
-      <IonReactRouter>
+      <IonReactHashRouter>
         <IonSplitPane contentId="main">
           <Menu />
           <IonRouterOutlet id="main">
@@ -57,15 +57,15 @@ const App: React.FC = () => {
             <Route path="/page/employee/:id" exact={true}>
               <EmployeeEdit/>
             </Route>
-            <Route path="/page/vendors" exact={true}>
-              <VendorList/>
+            <Route path="/page/suppliers" exact={true}>
+              <SupplierList/>
             </Route>
-            <Route path="/page/vendor/:id" exact={true}>
-              <VendorEdit/>
+            <Route path="/page/supplier/:id" exact={true}>
+              <SupplierEdit/>
             </Route>
           </IonRouterOutlet>
         </IonSplitPane>
-      </IonReactRouter>
+      </IonReactHashRouter>
     </IonApp>
   );
 };

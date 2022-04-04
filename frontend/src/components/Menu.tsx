@@ -24,7 +24,7 @@ interface AppPage {
 const appPages: AppPage[] = [
   {
     title: 'Customers',
-    url: '/page/Customers',
+    url: '/page/customers',
     iosIcon: peopleOutline,
     mdIcon: people
   },
@@ -35,8 +35,8 @@ const appPages: AppPage[] = [
     mdIcon: people
   },
   {
-    title: 'Vendors',
-    url: '/page/vendors',
+    title: 'Suppliers',
+    url: '/page/suppliers',
     iosIcon: peopleOutline,
     mdIcon: people
   },

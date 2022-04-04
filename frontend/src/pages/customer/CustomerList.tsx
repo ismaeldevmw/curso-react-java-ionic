@@ -29,13 +29,13 @@ const CustomerList: React.FC = () => {
     search();
   }, [history.location.pathname]);
 
-  const search = () => {
-    const result = searchCustomers();
+  const search = async () => {
+    const result = await searchCustomers();
     setClients(result);
   };
 
-  const remove = (id: string) => {
-    removeCustomer(id);
+  const remove = async (id: string) => {
+    await removeCustomer(id);
     search();
   };
 
@@ -90,7 +90,7 @@ const CustomerList: React.FC = () => {
             {clients.map((client: Customer) => (
               <IonRow key={client.id}>
                 <IonCol>
-                  {client.firstName} {client.lastName}
+                  {client.firstname} {client.lastname}
                 </IonCol>
                 <IonCol>{client.email}</IonCol>
                 <IonCol>{client.phone}</IonCol>

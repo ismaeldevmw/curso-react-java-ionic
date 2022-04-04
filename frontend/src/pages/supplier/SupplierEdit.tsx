@@ -18,16 +18,15 @@ import {
 import { checkmark } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
 import { useHistory, useParams, useRouteMatch } from 'react-router';
-import Customer from './Customer';
-import { saveCustomer, searchCustomerById } from './CustomerApi';
+import Supplier from './Supplier';
+import { saveSupplier, searchSupplierById } from './SupplierApi';
 
-const CustomerEdit: React.FC = () => {
+const SupplierEdit: React.FC = () => {
   const { name } = useParams<{ name: string }>();
-
-  const [customer, setCustomer] = useState<Customer>({});
+  const [supplier, setSupplier] = useState<Supplier>({});
   const history = useHistory();
 
-  const routeMatch: any = useRouteMatch("/page/customer/:id");
+  const routeMatch: any = useRouteMatch("/page/supplier/:id");
   let id = routeMatch?.params?.id;
 
   useEffect(() => {
@@ -36,16 +35,16 @@ const CustomerEdit: React.FC = () => {
 
   const search = async () => {
     if(id === 'new') {
-      setCustomer({});
+      setSupplier({});
     } else {
-      let result = await searchCustomerById(id);
-      setCustomer(result);
+      let result = await searchSupplierById(id);
+      setSupplier(result);
     }
   };
 
-  const save = async () => {
-    await saveCustomer(customer);
-    history.push('/page/customers');
+  const save = async() => {
+    await saveSupplier(supplier);
+    history.push('/page/suppliers');
   }
 
   return (
@@ -69,40 +68,46 @@ const CustomerEdit: React.FC = () => {
 
       <IonContent>
         <IonCard>
-          <IonTitle size="large">{ id === 'new' ? 'Add customer' : 'Edit customer'}</IonTitle>
+          <IonTitle size="large">{ id === 'new' ? 'Add supplier' : 'Edit supplier'}</IonTitle>
 
           <IonRow>
             <IonCol>
               <IonItem>
                 <IonLabel position="stacked">Name</IonLabel>
-                <IonInput onIonChange={e => customer.firstname = String(e.detail.value)} value={customer.firstname}> </IonInput>
+                <IonInput onIonChange={e => supplier.name = String(e.detail.value)} value={supplier.name}> </IonInput>
               </IonItem>
             </IonCol>
             <IonCol>
               <IonItem>
-                <IonLabel position="stacked">Last name</IonLabel>
-                <IonInput onIonChange={e => customer.lastname = String(e.detail.value)} value={customer.lastname}> </IonInput>
+                <IonLabel position="stacked">Email</IonLabel>
+                <IonInput onIonChange={e => supplier.email = String(e.detail.value)} value={supplier.email}> </IonInput>
               </IonItem>
             </IonCol>
             <IonCol>
               <IonItem>
                 <IonLabel position="stacked">Phone number</IonLabel>
-                <IonInput onIonChange={e => customer.phone = String(e.detail.value)} value={customer.phone}> </IonInput>
+                <IonInput onIonChange={e => supplier.phone = String(e.detail.value)} value={supplier.phone}> </IonInput>
               </IonItem>
             </IonCol>
           </IonRow>
         
           <IonRow>
-            <IonCol>
+          <IonCol>
               <IonItem>
-                <IonLabel position="stacked">Email</IonLabel>
-                <IonInput onIonChange={e => customer.email = String(e.detail.value)}value={customer.email}> </IonInput>
+                <IonLabel position="stacked">Address</IonLabel>
+                <IonInput onIonChange={e => supplier.address = String(e.detail.value)} value={supplier.address}> </IonInput>
               </IonItem>
             </IonCol>
             <IonCol>
               <IonItem>
-                <IonLabel position="stacked">Address</IonLabel>
-                <IonInput onIonChange={e => customer.address = String(e.detail.value)} value={customer.address}> </IonInput>
+                <IonLabel position="stacked">Web</IonLabel>
+                <IonInput onIonChange={e => supplier.web = String(e.detail.value)}value={supplier.web}> </IonInput>
+              </IonItem>
+            </IonCol>
+            <IonCol>
+              <IonItem>
+                <IonLabel position="stacked">Contact</IonLabel>
+                <IonInput onIonChange={e => supplier.contact = String(e.detail.value)}value={supplier.contact}> </IonInput>
               </IonItem>
             </IonCol>
           </IonRow>
@@ -119,4 +124,4 @@ const CustomerEdit: React.FC = () => {
   );
 };
 
-export default CustomerEdit;
+export default SupplierEdit;

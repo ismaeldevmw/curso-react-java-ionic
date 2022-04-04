@@ -1,7 +1,7 @@
-import Employee from './Employee';
+import Supplier from './Supplier';
 
-export async function searchEmployees() {
-  let url = process.env.REACT_APP_API +  'employees';
+export async function searchSuppliers() {
+  let url = process.env.REACT_APP_API +  'suppliers';
   
   let response = await fetch(url, {
     "method": 'GET',
@@ -13,8 +13,8 @@ export async function searchEmployees() {
   return await response.json();
 }
 
-export async function removeEmployee(id: string) {
-  let url = process.env.REACT_APP_API +  'employees/' + id;
+export async function removeSupplier(id: string) {
+  let url = process.env.REACT_APP_API +  'suppliers/' + id;
   
   await fetch(url, {
     "method": 'DELETE',
@@ -24,8 +24,8 @@ export async function removeEmployee(id: string) {
   });
 }
 
-export async function saveEmployee(employee: Employee) {
-  let url = process.env.REACT_APP_API +  'employees';
+export async function saveSupplier(employee: Supplier) {
+  let url = process.env.REACT_APP_API +  'suppliers';
   
   await fetch(url, {
     "method": 'POST',
@@ -37,8 +37,8 @@ export async function saveEmployee(employee: Employee) {
   
 }
 
-export async function searchEmployeeById(id: string) {
-  let url = process.env.REACT_APP_API +  'employees/' + id;
+export async function searchSupplierById(id: string) {
+  let url = process.env.REACT_APP_API +  'suppliers/' + id;
   
   let response = await fetch(url, {
     "method": 'GET',
